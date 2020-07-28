@@ -1,0 +1,5 @@
+#! /bin/bash
+
+histo /home/annex/astronomy/great_bear_dark_sky/images/2019/11/01/tif/0001.tif > ./result
+
+
