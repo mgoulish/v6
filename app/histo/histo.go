@@ -29,14 +29,21 @@ func main ( ) {
        img.Height,
      )
   
+  n := 65536
+  histo := make ( []int, n )
   var x, y uint32
+  for y = 0; y < img.Height; y ++ {
+    for x = 0; x < img.Width; x ++ {
+      g := img.Get_gray16 ( x, y )
+      histo [ g ] ++
+    }
+  }
 
-  x = 1721
-  y =  902
-
-  g := img.Get_gray16 ( x, y )
-
-  fp ( os.Stdout, "MDEBUG pixel at %d, %d is %d\n", x, y, g )
+  for i := 0; i < n; i ++ {
+    if histo[i] > 0 {
+      fp ( os.Stdout, "%8d  %d\n", i, histo[i] )
+    }
+  }
 }
 
 
