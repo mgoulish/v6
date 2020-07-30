@@ -20,25 +20,23 @@ func main ( ) {
 
   file_name := os.Args[1]
 
-  img := v.Read_Image_Gray16 ( file_name )
+  img := v.Read ( file_name )
 
-  n := 65536
-
-  histo := make ( []int, n )
-
+  fp ( os.Stdout, 
+       "MDEBUG img type %s, width %d, height %d\n",
+       v.Image_type_name ( img.Image_type ),
+       img.Width,
+       img.Height,
+     )
+  
   var x, y uint32
-  for y = 0; y < img.Height; y ++ {
-    for x = 0; x < img.Width; x ++ {
-      g := img.Get_Gray16 ( x, y )
-      histo [ g ] ++
-    }
-  }
 
-  for i := 0; i < n; i ++ {
-    if histo[i] > 0 {
-      fp ( os.Stdout, "%8d  %d\n", i, histo[i] )
-    }
-  }
+  x = 1721
+  y =  902
+
+  g := img.Get_gray16 ( x, y )
+
+  fp ( os.Stdout, "MDEBUG pixel at %d, %d is %d\n", x, y, g )
 }
 
 
