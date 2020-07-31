@@ -1,5 +1,5 @@
 #! /bin/bash
 
-./histo ./0001.whd
+./histo ../tif2whd/0001.whd
 
 

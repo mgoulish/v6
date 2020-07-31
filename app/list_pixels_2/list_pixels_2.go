@@ -12,6 +12,17 @@ import (
 var fp = fmt.Fprintf
 
 
+func check ( err error, msg string ) {
+  if err != nil {
+    fp ( os.Stdout, "list_pixels error : %s\n", msg )
+    os.Exit ( 1 )
+  }
+}
+
+
+
+
+
 func main ( ) {
 
   if len(os.Args) < 5 {
@@ -23,25 +34,19 @@ func main ( ) {
   file_2 := os.Args[2]
 
   low, err := strconv.Atoi ( os.Args[3] )
-  if err != nil {
-    fp ( os.Stdout, "list_pixels err: can't convert arg 3 to int.\n" )
-    os.Exit ( 1 )
-  }
+  check ( err, "Can't convert arg 3 to int." )
 
   high, err := strconv.Atoi ( os.Args[4] )
-  if err != nil {
-    fp ( os.Stdout, "list_pixels err: can't convert arg 4 to int.\n" )
-    os.Exit ( 1 )
-  }
+  check ( err, "Can't convert arg 4 to int." )
 
-  img_1 := v.Read_Image_Gray16 ( file_1 )
-  img_2 := v.Read_Image_Gray16 ( file_2 )
+  img_1 := v.Read ( file_1 )
+  img_2 := v.Read ( file_2 )
 
   var x, y uint32
   for y = 0; y < img_1.Height; y ++ {
     for x = 0; x < img_1.Width; x ++ {
-      g_1 := img_1.Get_Gray16 ( x, y )
-      g_2 := img_2.Get_Gray16 ( x, y )
+      g_1 := img_1.Get_gray16 ( x, y )
+      g_2 := img_2.Get_gray16 ( x, y )
 
       if low <= int(g_1) && int(g_1) <= high && low <= int(g_2) && int(g_2) <= high {
         fp ( os.Stdout, "%d %d %d %d\n", x, y, g_1, g_2 )

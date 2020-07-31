@@ -22,13 +22,6 @@ func main ( ) {
 
   img := v.Read ( file_name )
 
-  fp ( os.Stdout, 
-       "MDEBUG img type %s, width %d, height %d\n",
-       v.Image_type_name ( img.Image_type ),
-       img.Width,
-       img.Height,
-     )
-  
   n := 65536
   histo := make ( []int, n )
   var x, y uint32

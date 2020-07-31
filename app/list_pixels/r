@@ -1,5 +1,5 @@
 #! /bin/bash
 
-./list_pixels /home/annex/astronomy/great_bear_dark_sky/images/2019/11/01/tif/0002.tif 0 15 > ./result
+./list_pixels ../tif2whd/0001.whd 0 15 > ./result
 
 
