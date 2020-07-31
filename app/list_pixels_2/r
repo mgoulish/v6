@@ -1,5 +1,5 @@
 #! /bin/bash
 
-./list_pixels_2 ../tif2whd/0001.whd  ../tif2whd/0002.whd  0 15 > ./result
+time ./list_pixels_2 ../tif2whd/0001.whd  ../tif2whd/0002.whd  0 15 > ./result
 
 

@@ -49,7 +49,7 @@ func ( img * Image ) Get_rgba ( x, y uint32 ) ( r, g, b, a byte ) {
 
 
 
-func Read_RGBA ( file_name string ) ( img * Image ) {
+func Read_rgba ( file_name string ) ( img * Image ) {
   reader, err := os.Open ( file_name )
   if err != nil {
     fp ( os.Stdout, "image_read error: |%s|\n", err.Error() )
@@ -90,7 +90,7 @@ func Read_RGBA ( file_name string ) ( img * Image ) {
 
 
 
-func (img * Image) Write_RGBA ( file_name string ) {
+func (img * Image) Write_rgba_to_tif ( file_name string ) {
 
   output_file, err := os.Create ( file_name )
   if err != nil {

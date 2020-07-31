@@ -42,6 +42,8 @@ func main ( ) {
   img_1 := v.Read ( file_1 )
   img_2 := v.Read ( file_2 )
 
+  result_img := v.New_image ( v.Image_type_rgba, img_1.Width, img_1.Height )
+
   var x, y uint32
   for y = 0; y < img_1.Height; y ++ {
     for x = 0; x < img_1.Width; x ++ {
@@ -50,9 +52,14 @@ func main ( ) {
 
       if low <= int(g_1) && int(g_1) <= high && low <= int(g_2) && int(g_2) <= high {
         fp ( os.Stdout, "%d %d %d %d\n", x, y, g_1, g_2 )
+        result_img.Set_rgba ( x, y, 255, 0, 0, 255 )
+      } else {
+        result_img.Set_rgba ( x, y, 0, 0, 0, 255 )
       }
     }
   }
+  
+  result_img.Write_rgba_to_tif ( "./result.tif" )
 }
 
 
