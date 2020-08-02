@@ -15,8 +15,7 @@ import (
 
 
 func ( img * Image ) Set_rgba ( x, y uint32, r, g, b, a byte ) {
-  bpp := Bytes_per_pixel ( img.Image_type )
-  address := bpp * ( x + y * img.Width )
+  address := 4 * ( x + y * img.Width )
   img.Pixels [ address ] = r
   address ++
   img.Pixels [ address ] = g
@@ -32,8 +31,7 @@ func ( img * Image ) Set_rgba ( x, y uint32, r, g, b, a byte ) {
 
 
 func ( img * Image ) Get_rgba ( x, y uint32 ) ( r, g, b, a byte ) {
-  bpp := Bytes_per_pixel ( img.Image_type )
-  address := bpp * ( x + y * img.Width )
+  address := 4 * ( x + y * img.Width )
   r = img.Pixels [ address ]
   address ++
   g = img.Pixels [ address ]

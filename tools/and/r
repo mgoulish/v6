@@ -1,0 +1,5 @@
+#! /bin/bash
+
+time ./and ../threshold/0001.whd ../threshold/0002.whd  ./anded.whd
+
+

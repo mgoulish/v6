@@ -1,0 +1,5 @@
+#! /bin/bash
+
+time ./histo ../tif2whd/0001.whd > result
+
+

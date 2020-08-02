@@ -1,0 +1,10 @@
+
+There are two ways of exploring and manipulating images. You can write a
+program to do whatever you want, or you can use command-line tools for
+a more interactive, one-step-at-a-time experience.
+
+The 'tools' directory contains small programs that are meant to be used 
+as command-line tools.
+
+All tools except tif2whd use ehd images.
+

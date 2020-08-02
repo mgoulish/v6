@@ -1,0 +1,7 @@
+#! /bin/bash
+
+./whd2tif ./0002.whd ./0002.tif
+
+
+
+

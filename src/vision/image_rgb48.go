@@ -12,8 +12,7 @@ import (
 
 
 func ( img * Image ) Set_RGB48 ( x, y uint32, r, g, b uint16 ) {
-  bpp := Bytes_per_pixel ( img.Image_type )
-  address := bpp * ( x + y * img.Width )
+  address := 6 * ( x + y * img.Width )
 
   // r ---------------------
   img.Pixels [ address     ] = byte(r >> 8)
@@ -33,8 +32,7 @@ func ( img * Image ) Set_RGB48 ( x, y uint32, r, g, b uint16 ) {
 
 
 func ( img * Image ) Get_RGB48 ( x, y uint32 ) ( r, g, b  uint16 ) {
-  bpp := Bytes_per_pixel ( img.Image_type )
-  address := bpp * ( x + y * img.Width )
+  address := 6 * ( x + y * img.Width )
 
   // r ---------------------
   r = uint16(img.Pixels [ address ])

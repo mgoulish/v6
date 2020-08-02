@@ -1,5 +1,0 @@
-#! /bin/bash
-
-./histo ../tif2whd/0001.whd
-
-
