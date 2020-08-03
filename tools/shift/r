@@ -1,0 +1,7 @@
+#! /bin/bash
+
+
+
+time ./shift ./0001.whd -5 5 ./shifted.whd
+../whd2tif/whd2tif ./shifted.whd ./shifted.tif
+

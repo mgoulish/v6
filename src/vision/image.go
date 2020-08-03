@@ -30,7 +30,7 @@ const (
 
 
 type Image struct {
-  Image_type, Width, Height uint32
+  Image_type, Width, Height, n_bytes uint32
   Pixels [] byte
 }
 
@@ -44,6 +44,7 @@ func New_image ( image_type, width, height uint32 ) ( * Image ) {
                    Width      : width,
                    Height     : height,
                    Pixels     : make ( []byte, width * height * bpp ),
+                   n_bytes    : width * height * bpp,
                  }
 }
 
