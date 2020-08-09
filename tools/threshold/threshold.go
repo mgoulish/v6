@@ -25,6 +25,7 @@ func main ( ) {
   img := v.Read ( os.Args[1] )
   result_img := img.Threshold_gray16 ( uint16(thresh) ) 
   result_img.Write ( os.Args[3] )
+  result_img.Write_gray8_to_tif ( "./result.tif" )
 }
 
 

@@ -121,6 +121,10 @@ func ( img * Image ) Write_gray16_to_tif ( file_name string ) {
 
 func ( img * Image ) Threshold_gray16 ( threshold uint16 ) ( dst * Image ) {
 
+  if img.Image_type != Image_type_gray16 {
+    panic ( fmt.Errorf ( "Threshold_gray16 error: image must be gray16. This one is %s.\n", Image_type_name(img.Image_type)))
+  }
+
   // Gray8 is my equivalent of a binary image.
   dst = New_image ( Image_type_gray8, img.Width, img.Height )
 

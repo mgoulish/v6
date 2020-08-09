@@ -23,7 +23,6 @@ func ( img * Image ) Set_rgba ( x, y uint32, r, g, b, a byte ) {
   img.Pixels [ address ] = b
   address ++
   img.Pixels [ address ] = a
-  address ++
 }
 
 

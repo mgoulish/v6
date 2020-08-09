@@ -92,3 +92,89 @@ func ( img_1 * Image ) And_gray8 ( img_2 * Image ) ( result * Image ) {
 
 
 
+// Image is assumed to be binary -- 0 or 255.
+// Result (in place) will be binary.
+func ( img * Image ) Invert_gray8 ( ) {
+  
+  if img.Image_type != Image_type_gray8 {
+    panic ( "Image must be gray8." )
+  }
+
+  var x, y uint32
+  for y = 0; y < img.Height; y ++ {
+    for x = 0; x < img.Width; x ++ {
+      if img.Get_gray8(x, y) == 255 {
+        img.Set_gray8 ( x, y, 0 )
+      } else {
+        img.Set_gray8 ( x, y, 255 )
+      }
+    }
+  }
+}
+
+
+
+
+
+func ( src * Image ) Dilate ( ) ( dst * Image ) {
+  if src.Image_type != Image_type_gray8 {
+    panic ( "Image must be gray8." )
+  }
+
+  dst = New_image ( Image_type_gray8, src.Width, src.Height )
+
+  var x, y uint32
+  for y = 0; y < src.Height; y ++ {
+    for x = 0; x < src.Width; x ++ {
+      if src.Get_gray8(x, y) == 255 {
+        if 255 == src.Get_gray8 ( x, y ) {
+          dst.Set_neighborhood ( x, y, 255 )
+        }
+      }
+    }
+  }
+
+  return dst
+}
+
+
+
+
+
+func ( img * Image ) Set_neighborhood ( x, y uint32, gray uint8 ) {
+  var min_x, min_y, max_x, max_y uint32
+
+  if y == 0 {
+    min_y = 0
+  } else {
+    min_y = y - 1
+  }
+
+  if x == 0 {
+    min_x = 0
+  } else {
+    min_x = x - 1
+  }
+
+  max_y = min_y + 3
+  max_x = min_x + 3
+
+  if max_y >= img.Height {
+    max_y = img.Height
+  }
+
+  if max_x >= img.Width {
+    max_x = img.Width
+  }
+
+  for y1 := min_y; y1 < max_y; y1 ++ {
+    for x1 := min_x; x1 < max_x; x1 ++ {
+      img.Set_gray8 ( x1, y1, gray )
+    }
+  }
+}
+
+
+
+
+
