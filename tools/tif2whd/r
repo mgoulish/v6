@@ -1,6 +1,6 @@
 #! /bin/bash
 
-./tif2whd /home/annex/astronomy/great_bear_dark_sky/images/2019/11/01/tif/0002.tif ./0002.whd
+./tif2whd  /home/annex/astronomy/Dark_Horse/2020/07/30/tif/r.tif ./r.whd
 
 
 

@@ -25,7 +25,25 @@ func ( img * Image ) Set_gray16 ( x, y uint32, g uint16 ) {
   }
 
   img.Pixels [ address     ] = byte(g >> 8)
-  img.Pixels [ address + 1 ] = byte(g&0x0F)
+  img.Pixels [ address + 1 ] = byte(g&0xFF)
+}
+
+
+
+
+
+func ( img * Image ) Set_gray16_debug ( x, y uint32, g uint16 ) {
+  address := 2 * ( x + y * img.Width )
+
+  if address >= img.n_bytes - 1 {
+    panic ( fmt.Errorf ( "Set_gray16: %d %d is not in image. (%d %d)", 
+                         x, y, img.Width, img.Height ) )
+  }
+
+  img.Pixels [ address     ] = byte(g >> 8)
+  fp ( os.Stdout, "MDEBUG set %X at %d\n", byte(g >> 8), address )
+  img.Pixels [ address + 1 ] = byte(g&0xFF)
+  fp ( os.Stdout, "MDEBUG set %X at %d\n", byte(g&0xFF), address + 1)
 }
 
 
@@ -45,6 +63,26 @@ func ( img * Image ) Get_gray16 ( x, y uint32 ) ( g  uint16 ) {
   val += uint16(img.Pixels [ address + 1])
   return val
 }
+
+
+func ( img * Image ) Get_gray16_debug ( x, y uint32 ) ( g  uint16 ) {
+  address := 2 * ( x + y * img.Width )
+
+  if address >= img.n_bytes - 1 {
+    panic ( fmt.Errorf ( "Get_gray16: %d %d is not in image. (%d %d)", 
+                         x, y, img.Width, img.Height ) )
+  }
+
+  val := uint16(img.Pixels [ address ])
+  fp ( os.Stdout, "MDEBUG got byte %X from %d\n", uint16(img.Pixels [ address ]), address )
+  val <<= 8
+  val += uint16(img.Pixels [ address + 1])
+  fp ( os.Stdout, "MDEBUG got byte %X from %d\n", uint16(img.Pixels [ address + 1 ]), address+1 )
+  return val
+}
+
+
+
 
 
 
@@ -146,7 +184,7 @@ func ( img * Image ) Threshold_gray16 ( threshold uint16 ) ( dst * Image ) {
 
 
 
-func ( img * Image ) Shift_X_Gray16 ( shift int ) ( result * Image ) {
+func ( img * Image ) Shift_x_gray16 ( shift int ) ( result * Image ) {
 
   result = New_image ( Image_type_gray16, img.Width, img.Height )
 
@@ -185,7 +223,7 @@ func ( img * Image ) Shift_X_Gray16 ( shift int ) ( result * Image ) {
 
 
 
-func ( img * Image ) Shift_Y_Gray16 ( shift int ) ( result * Image ) {
+func ( img * Image ) Shift_y_gray16 ( shift int ) ( result * Image ) {
   result = New_image ( Image_type_gray16, img.Width, img.Height )
 
   // Zero out all pixels.
@@ -213,6 +251,36 @@ func ( img * Image ) Shift_Y_Gray16 ( shift int ) ( result * Image ) {
         result.Set_gray16 ( x, dst_y, g )
       }
       dst_y ++
+    }
+  }
+
+  return result
+}
+
+
+
+
+
+func ( img * Image ) Histogram_gray16 ( x, y, w, h uint32 ) ( []int ) {
+
+  if img.Image_type != Image_type_gray16 {
+    panic(fmt.Errorf("Histogram_gray16: bad image type %s\n", Image_type_name(img.Image_type)))
+  }
+
+  result := make ( []int, 65536 )
+
+  if x + w >= img.Width {
+    panic ( fmt.Errorf ( "Histogram_gray16: x+w out of bounds." ) )
+  }
+
+  if y + h >= img.Height {
+    panic ( fmt.Errorf ( "Histogram_gray16: y+h out of bounds." ) )
+  }
+
+  for y1 := y; y1 < y + h; y1 ++ {
+    for x1 := x; x1 < x + w; x1 ++ {
+      g := img.Get_gray16 ( x1, y1 )
+      result [ g ] ++
     }
   }
 

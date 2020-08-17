@@ -1,5 +1,8 @@
 #! /bin/bash
 
-time ./histo ../tif2whd/0001.whd > result
+time ./histo ../tif2whd/r.whd 0 0 4007 2671   > result
+
+
+gnuplot ./histo.gplot
 
 

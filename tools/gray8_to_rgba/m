@@ -1,0 +1,12 @@
+#! /bin/bash
+  
+
+
+export VISION_ROOT=${HOME}/Desktop/v6
+export GOPATH=${VISION_ROOT}:/home/mick/go
+
+
+go build ./gray8_to_rgba.go
+
+
+

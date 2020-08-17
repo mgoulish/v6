@@ -6,7 +6,7 @@ export VISION_ROOT=${HOME}/Desktop/v6
 export GOPATH=${VISION_ROOT}:/home/mick/go
 
 
-go build ./find_dead_pixels.go
+go build ./colorize.go
 
 
 

@@ -1,0 +1,11 @@
+
+set autoscale
+unset key
+set xrange [ 0 : 500 ]
+set ylabel "pixel count"
+set xlabel "pixel value"
+set terminal jpeg size 2000,500
+set output "histo.jpg"
+set title "image histogram"
+plot "result" with linespoints
+

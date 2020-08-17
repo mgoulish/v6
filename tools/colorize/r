@@ -1,0 +1,8 @@
+#! /bin/bash
+
+./colorize ../tif2whd/r.whd ./rgb.tif
+
+
+
+
+
