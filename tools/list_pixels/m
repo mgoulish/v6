@@ -1,0 +1,13 @@
+#! /bin/bash
+  
+
+
+export VISION_ROOT=${HOME}/Desktop/v6
+export GOPATH=${VISION_ROOT}:/home/mick/go
+
+
+# go run ./*.go
+go build ./list_pixels.go
+
+
+

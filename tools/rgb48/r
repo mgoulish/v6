@@ -1,0 +1,10 @@
+#! /bin/bash
+
+D=/home/mick/Desktop/v6/scripts/color_image
+
+time ./rgb48 ${D}/r.whd ${D}/g_shifted.whd ${D}/b_shifted.whd  ./rgb48.whd
+
+
+
+
+

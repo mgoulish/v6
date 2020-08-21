@@ -1,0 +1,12 @@
+#! /bin/bash
+
+D=/home/mick/Desktop/v6/scripts/color_image
+
+time ./average ${D}/r.whd ${D}/g_shifted.whd ${D}/b_shifted.whd  ./average.whd
+
+../whd2tif/whd2tif ./average.whd  ./average.tif
+
+
+
+
+

@@ -1,0 +1,9 @@
+#! /bin/bash
+
+time ./brightest_point ../tif2whd/r.whd 
+
+
+
+
+
+

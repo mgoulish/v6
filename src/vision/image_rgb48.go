@@ -11,27 +11,27 @@ import (
 
 
 
-func ( img * Image ) Set_RGB48 ( x, y uint32, r, g, b uint16 ) {
+func ( img * Image ) Set_rgb48 ( x, y uint32, r, g, b uint16 ) {
   address := 6 * ( x + y * img.Width )
 
   // r ---------------------
   img.Pixels [ address     ] = byte(r >> 8)
-  img.Pixels [ address + 1 ] = byte(r&0x0F)
+  img.Pixels [ address + 1 ] = byte(r&0xFF)
 
   // g ---------------------
   img.Pixels [ address + 2 ] = byte(g >> 8)
-  img.Pixels [ address + 3 ] = byte(g&0x0F)
+  img.Pixels [ address + 3 ] = byte(g&0xFF)
 
   // b ---------------------
   img.Pixels [ address + 4 ] = byte(b >> 8)
-  img.Pixels [ address + 5 ] = byte(b&0x0F)
+  img.Pixels [ address + 5 ] = byte(b&0xFF)
 }
 
 
 
 
 
-func ( img * Image ) Get_RGB48 ( x, y uint32 ) ( r, g, b  uint16 ) {
+func ( img * Image ) Get_rgb48 ( x, y uint32 ) ( r, g, b  uint16 ) {
   address := 6 * ( x + y * img.Width )
 
   // r ---------------------
@@ -40,14 +40,14 @@ func ( img * Image ) Get_RGB48 ( x, y uint32 ) ( r, g, b  uint16 ) {
   r += uint16(img.Pixels [ address + 1])
 
   // g ---------------------
-  g = uint16(img.Pixels [ address ])
+  g = uint16(img.Pixels [ address + 2])
   g <<= 8
-  g += uint16(img.Pixels [ address + 1])
+  g += uint16(img.Pixels [ address + 3])
 
   // b ---------------------
-  b = uint16(img.Pixels [ address ])
+  b = uint16(img.Pixels [ address + 4])
   b <<= 8
-  b += uint16(img.Pixels [ address + 1])
+  b += uint16(img.Pixels [ address + 5])
 
   return r, g, b
 }

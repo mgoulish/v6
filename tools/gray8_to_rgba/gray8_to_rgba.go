@@ -36,7 +36,7 @@ func main ( ) {
   gray_img := v.Read ( gray8_file_name )
   rgb_img  := v.New_image ( v.Image_type_rgba, gray_img.Width, gray_img.Height )
 
-  gray_img.Invert_gray8 ( )
+  //gray_img.Invert_gray8 ( )
 
   for y := uint32(0); y < gray_img.Height; y ++ {
     for x := uint32(0); x < gray_img.Width; x ++ {

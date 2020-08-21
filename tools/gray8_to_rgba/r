@@ -1,6 +1,6 @@
 #! /bin/bash
 
-./gray8_to_rgba ./0001.whd ./0001_r.tif
+./gray8_to_rgba ../threshold/r.whd ./r_thresholded.tif
 
 
 

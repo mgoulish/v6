@@ -1,0 +1,8 @@
+#! /bin/bash
+
+time ./rgb48_to_rgb ../rgb48/rgb48.whd ./rgb.tif > output
+
+
+
+
+

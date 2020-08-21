@@ -1,0 +1,10 @@
+#! /bin/bash
+
+time ./list_pixels ../tif2whd/r.whd 1953 1255 70 70 > result
+
+
+gnuplot ./3d.gplot
+
+
+
+

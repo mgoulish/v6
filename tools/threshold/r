@@ -1,6 +1,6 @@
 #! /bin/bash
 
-time ./threshold ../tif2whd/0001.whd 15 ./0001.whd
+time ./threshold ../tif2whd/r.whd 240 ./r.whd
 
 
 
